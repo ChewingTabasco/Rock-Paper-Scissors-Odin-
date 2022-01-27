@@ -88,7 +88,7 @@ Computer Score: ${computerScore}`);
 function game() {
   console.log("You play 5 rounds of Rock Paper Scissors. The results are...");
   for (let i = 1; i < 6; i++) {
-    playerHand = prompt("choice?", "rock");
+    playerHand = prompt("'Rock', 'Paper', or 'Scissors'?", "rock");
     console.log(playRound(playerHand, computerPlay()));
   }
 }

@@ -4,10 +4,11 @@
 // log the return to the console
 
 let randomNumber;
-let playerWin = false;
-let computerWin = false;
+// let playerWin = false;
+// let computerWin = false;
 let playerScore = 0;
 let computerScore = 0;
+let playerSelection = prompt("Rock, Paper, or Scissors?");
 
 function computerPlay() {
   getRandomNumber();
@@ -27,10 +28,10 @@ function getRandomNumber() {
 function playRound(playerSelection, computerSelection) {
   if (playerSelection.toUpperCase() == "ROCK") {
     if (computerSelection == "Paper") {
-      incrementScore(computerScore);
+      incrementScoreComputer();
       return `You lose. The computer played ${computerSelection}.`;
     } else if (computerSelection == "Scissors") {
-      incrementScore(playerScore);
+      incrementScorePlayer();
       return `You win! The computer played ${computerSelection}!`;
     } else {
       return `Tie game. You both played ${playerSelection}.`;
@@ -38,10 +39,10 @@ function playRound(playerSelection, computerSelection) {
   }
   if (playerSelection.toUpperCase() == "PAPER") {
     if (computerSelection == "Scissors") {
-      incrementScore(computerScore);
+      incrementScoreComputer();
       return `You lose. The computer played ${computerSelection}.`;
     } else if (computerSelection == "Rock") {
-      incrementScore(playerScore);
+      incrementScorePlayer();
       return `You win! The computer played ${computerSelection}!`;
     } else {
       return `Tie game. You both played ${playerSelection}.`;
@@ -49,10 +50,10 @@ function playRound(playerSelection, computerSelection) {
   }
   if (playerSelection.toUpperCase() == "SCISSORS") {
     if (computerSelection == "Rock") {
-      incrementScore(computerScore);
+      incrementScoreComputer();
       return `You lose. The computer played ${computerSelection}.`;
     } else if (computerSelection == "Paper") {
-      incrementScore(playerScore);
+      incrementScorePlayer();
       return `You win! The computer played ${computerSelection}!`;
     } else {
       return `Tie game. You both played ${playerSelection}.`;
@@ -62,20 +63,35 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-function incrementScore(player) {
-  player += 1;
+function incrementScoreComputer() {
+  computerScore += 1;
+}
+
+function incrementScorePlayer() {
+  playerScore += 1;
+}
+
+function renderFinalMessage() {
+  console.log(`Your Score: ${playerScore}
+Computer Score: ${computerScore}`);
+  if (playerScore > computerScore) {
+    console.log("Congratulations! You won overall!");
+  } else if (playerScore == computerScore) {
+    console.log("You and the Computer tied overall.");
+  } else {
+    console.log("Sorry, the computer won overall...");
+  }
 }
 
 function game() {
   console.log("You play 5 rounds of Rock Paper Scissors. The results are...");
   for (let i = 1; i < 6; i++) {
-    console.log(playRound("Rock", computerPlay()));
+    console.log(playRound(playerSelection, computerPlay()));
   }
 }
 
 game();
-console.log(`Your Score: ${playerScore}
- Computer Score: ${computerScore}`);
+renderFinalMessage();
 
 //for each time the player/ computer wins, xScore += 1. run a function that prints the total scores for each. run another function that declares the winner with a string.
 

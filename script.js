@@ -8,7 +8,7 @@ let randomNumber;
 // let computerWin = false;
 let playerScore = 0;
 let computerScore = 0;
-let playerSelection = prompt("Rock, Paper, or Scissors?");
+let playerHand;
 
 function computerPlay() {
   getRandomNumber();
@@ -76,6 +76,8 @@ function renderFinalMessage() {
 Computer Score: ${computerScore}`);
   if (playerScore > computerScore) {
     console.log("Congratulations! You won overall!");
+  } else if (playerScore == 0 && computerScore == 0) {
+    console.log("Nothing to see here...");
   } else if (playerScore == computerScore) {
     console.log("You and the Computer tied overall.");
   } else {
@@ -86,7 +88,8 @@ Computer Score: ${computerScore}`);
 function game() {
   console.log("You play 5 rounds of Rock Paper Scissors. The results are...");
   for (let i = 1; i < 6; i++) {
-    console.log(playRound(playerSelection, computerPlay()));
+    playerHand = prompt("choice?", "rock");
+    console.log(playRound(playerHand, computerPlay()));
   }
 }
 
